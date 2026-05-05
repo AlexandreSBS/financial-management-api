@@ -5,6 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Directory.Build.props" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\\Financial.Core\\Financial.Core.csproj" />
     <ProjectReference Include="..\\Financial.Data\\Financial.Data.csproj" />
   </ItemGroup>
@@ -14,5 +17,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="libman.json" />
   </ItemGroup>
 </Project>
