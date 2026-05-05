@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Financial.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : DbContext, IUnitOfWork 
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -65,6 +65,11 @@ public class AppDbContext : DbContext
             new Movement { Id = Guid.NewGuid(), UserId = testUserId, Description = "Stock Portfolio", Amount = 600m, Date = new DateTime(2025, 11, 20), Category = "Stocks", Type = MovementType.Investment },
             new Movement { Id = Guid.NewGuid(), UserId = testUserId, Description = "Bond Fund", Amount = 350m, Date = new DateTime(2025, 11, 25), Category = "Bonds", Type = MovementType.Investment }
         );
+    }
+
+    public async Task<bool> CommitAsync()
+    {
+        return await base.SaveChangesAsync() > 0;
     }
 }
 
