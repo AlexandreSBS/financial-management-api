@@ -30,7 +30,14 @@ jobs:
   SCS:
     runs-on: ubuntu-latest
     steps:     
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET runtimes for SCS
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            3.1.x
       
       - name: Set up projects
         uses: security-code-scan/security-code-scan-add-action@v1.2
